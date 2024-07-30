@@ -1,0 +1,38 @@
+<!-- templates/web/mostrar_datos.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Seleccionar Tabla</title>
+</head>
+<body>
+    <h1>Seleccionar Tabla</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Mostrar Datos</button>
+    </form>
+
+    {% if datos %}
+        <h2>Datos de la Tabla</h2>
+        <table>
+            <thead>
+                <tr>
+                    {% for columna in columnas %}
+                        <th>{{ columna }}</th>
+                    {% endfor %}
+                </tr>
+            </thead>
+            <tbody>
+                {% for fila in datos %}
+                    <tr>
+                        {% for celda in fila %}
+                            <td>{{ celda }}</td>
+                        {% endfor %}
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
+</body>
+</html>
